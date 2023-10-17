@@ -9,7 +9,7 @@ const Carousel = () => {
             <div className="w-full md:h-[600px] carousel">
                 <div id="slide1" className="relative w-full carousel-item">
                     <img src={slider1} className="w-full rounded-xl" />
-                    <div className="bg-gradient-to-r from-black to-transparent absolute h-full w-6/12">
+                    <div className="bg-gradient-to-r from-black to-transparent absolute h-full w-6/12 rounded-xl">
                     </div>
                     <div className="absolute bottom-0 flex justify-end gap-3 transform -translate-y-1/2 left-5 right-5">
                         <a href="#slide4" className="btn btn-circle">❮</a>
@@ -29,8 +29,8 @@ const Carousel = () => {
                     </div>
                 </div>
                 <div id="slide2" className="relative w-full carousel-item">
-                    <img src={slider2} className="w-full" />
-                    <div className="bg-gradient-to-r from-black to-transparent absolute h-full w-6/12">
+                    <img src={slider2} className="w-full rounded-xl" />
+                    <div className="bg-gradient-to-r from-black to-transparent absolute h-full w-6/12 rounded-xl">
                     </div>
                     <div className="absolute bottom-0 flex justify-end gap-3 transform -translate-y-1/2 left-5 right-5">
                         <a href="#slide1" className="btn btn-circle">❮</a>
@@ -50,8 +50,8 @@ const Carousel = () => {
                     </div>
                 </div>
                 <div id="slide3" className="relative w-full carousel-item">
-                    <img src={slider3} className="w-full" />
-                    <div className="bg-gradient-to-r from-black to-transparent absolute h-full w-6/12">
+                    <img src={slider3} className="w-full rounded-xl" />
+                    <div className="bg-gradient-to-r from-black to-transparent absolute h-full w-6/12 rounded-xl">
                     </div>
                     <div className="absolute bottom-0 flex justify-end gap-3 transform -translate-y-1/2 left-5 right-5">
                         <a href="#slide2" className="btn btn-circle">❮</a>
@@ -71,8 +71,8 @@ const Carousel = () => {
                     </div>
                 </div>
                 <div id="slide4" className="relative w-full carousel-item">
-                    <img src={slider4} className="w-full" />
-                    <div className="bg-gradient-to-r from-black to-transparent absolute h-full w-6/12">
+                    <img src={slider4} className="w-full rounded-xl" />
+                    <div className="bg-gradient-to-r from-black to-transparent absolute h-full w-6/12 rounded-xl">
                     </div>
                     <div className="absolute bottom-0 flex justify-end gap-3 transform -translate-y-1/2 left-5 right-5">
                         <a href="#slide3" className="btn btn-circle">❮</a>
