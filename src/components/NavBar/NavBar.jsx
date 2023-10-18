@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { PiHandbagBold, PiUserBold } from "react-icons/pi";
 
 const NavBar = () => {
+
+    const { user, loading } = useContext(AuthContext);
 
     const menu = <>
         <li><Link to="/">Home</Link></li>
@@ -34,6 +39,10 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+                    {
+                        (user) ? <Link><button className="btn btn-ghost"><PiUserBold className="text-3xl" /></button></Link> : ''
+                    }
+                    <Link><button className="btn btn-ghost"><PiHandbagBold className="text-3xl" /></button></Link>
                     <Link to="/appointment"><button className="hidden text-orange-500 border-orange-500 md:block btn btn-outline hover:text-white">Appointment</button></Link>
                 </div>
             </div>
