@@ -9,8 +9,8 @@ const AboutUs = () => {
                     <div>
                         <img src={image1} className="w-10/12 h-[400px]" alt="" />
                     </div>
-                    <div className="absolute right-5 top-64">
-                        <img src={image2} className="border-4 rounded-lg border-white w-[200px] h-[210px]" alt="" />
+                    <div className="absolute right-5 top-60">
+                        <img src={image2} className="border-4 rounded-lg border-white w-[250px] h-[210px]" alt="" />
                     </div>
                 </div>
                 <div className="w-full">
