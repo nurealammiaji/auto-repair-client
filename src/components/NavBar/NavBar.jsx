@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { PiHandbagBold, PiUserBold } from "react-icons/pi";
+import { PiHandbagLight, PiUserLight, PiMagnifyingGlassLight } from "react-icons/pi";
 
 const NavBar = () => {
 
@@ -40,10 +40,12 @@ const NavBar = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                        (user) ? <Link><button className="btn btn-ghost"><PiUserBold className="text-3xl" /></button></Link> : ''
+                        (user) &&
+                        <Link to="/user"><button className="p-0 m-1 btn btn-sm btn-ghost"><PiUserLight className="text-2xl" /></button></Link>
                     }
-                    <Link><button className="btn btn-ghost"><PiHandbagBold className="text-3xl" /></button></Link>
-                    <Link to="/appointment"><button className="hidden text-orange-500 border-orange-500 md:block btn btn-outline hover:text-white">Appointment</button></Link>
+                    <Link to="/cart"><button className="p-0 m-1 btn btn-sm btn-ghost"><PiHandbagLight className="text-2xl" /></button></Link>
+                    <Link to="/search"><button className="p-0 m-1 btn btn-sm btn-ghost"><PiMagnifyingGlassLight className="text-2xl" /></button></Link>
+                    <Link to="/appointment"><button className="hidden ml-2 text-orange-500 border-orange-500 md:block btn btn-outline hover:text-white">Appointment</button></Link>
                 </div>
             </div>
         </div>

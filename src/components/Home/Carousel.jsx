@@ -9,11 +9,11 @@ const Carousel = () => {
             <div className="w-full md:h-[600px] carousel">
                 <div id="slide1" className="relative w-full carousel-item">
                     <img src={slider1} className="w-full rounded-xl" />
-                    <div className="absolute w-6/12 h-full bg-gradient-to-r from-black to-transparent rounded-xl">
+                    <div className="absolute hidden w-6/12 h-full md:block bg-gradient-to-r from-black to-transparent rounded-xl">
                     </div>
                     <div className="absolute bottom-0 flex justify-end gap-3 transform -translate-y-1/2 left-5 right-5">
-                        <a href="#slide4" className="text-white bg-orange-500 border-orange-500 btn btn-circle">❮</a>
-                        <a href="#slide2" className="text-white bg-orange-500 border-orange-500 btn btn-circle">❯</a>
+                        <a href="#slide4" className="text-white bg-orange-500 border-orange-500 btn btn-circle btn-sm md:btn-md">❮</a>
+                        <a href="#slide2" className="text-white bg-orange-500 border-orange-500 btn btn-circle btn-sm md:btn-md">❯</a>
                     </div>
                     <div className="absolute justify-start hidden w-6/12 gap-3 text-white transform -translate-y-1/2 md:block top-64 left-5 right-5">
                         <h1 className="text-5xl font-bold">Affordable</h1>
@@ -30,11 +30,11 @@ const Carousel = () => {
                 </div>
                 <div id="slide2" className="relative w-full carousel-item">
                     <img src={slider2} className="w-full rounded-xl" />
-                    <div className="absolute w-6/12 h-full bg-gradient-to-r from-black to-transparent rounded-xl">
+                    <div className="absolute hidden w-6/12 h-full md:block bg-gradient-to-r from-black to-transparent rounded-xl">
                     </div>
                     <div className="absolute bottom-0 flex justify-end gap-3 transform -translate-y-1/2 left-5 right-5">
-                        <a href="#slide1" className="text-white bg-orange-500 border-orange-500 btn btn-circle">❮</a>
-                        <a href="#slide3" className="text-white bg-orange-500 border-orange-500 btn btn-circle">❯</a>
+                        <a href="#slide1" className="text-white bg-orange-500 border-orange-500 btn btn-circle btn-sm md:btn-md">❮</a>
+                        <a href="#slide3" className="text-white bg-orange-500 border-orange-500 btn btn-circle btn-sm md:btn-md">❯</a>
                     </div>
                     <div className="absolute justify-start hidden w-6/12 gap-3 text-white transform -translate-y-1/2 md:block top-64 left-5 right-5">
                         <h1 className="text-5xl font-bold">Affordable</h1>
@@ -51,11 +51,11 @@ const Carousel = () => {
                 </div>
                 <div id="slide3" className="relative w-full carousel-item">
                     <img src={slider3} className="w-full rounded-xl" />
-                    <div className="absolute w-6/12 h-full bg-gradient-to-r from-black to-transparent rounded-xl">
+                    <div className="absolute hidden w-6/12 h-full md:block bg-gradient-to-r from-black to-transparent rounded-xl">
                     </div>
                     <div className="absolute bottom-0 flex justify-end gap-3 transform -translate-y-1/2 left-5 right-5">
-                        <a href="#slide2" className="text-white bg-orange-500 border-orange-500 btn btn-circle">❮</a>
-                        <a href="#slide4" className="text-white bg-orange-500 border-orange-500 btn btn-circle">❯</a>
+                        <a href="#slide2" className="text-white bg-orange-500 border-orange-500 btn btn-circle btn-sm md:btn-md">❮</a>
+                        <a href="#slide4" className="text-white bg-orange-500 border-orange-500 btn btn-circle btn-sm md:btn-md">❯</a>
                     </div>
                     <div className="absolute justify-start hidden w-6/12 gap-3 text-white transform -translate-y-1/2 md:block top-64 left-5 right-5">
                         <h1 className="text-5xl font-bold">Affordable</h1>
@@ -72,11 +72,11 @@ const Carousel = () => {
                 </div>
                 <div id="slide4" className="relative w-full carousel-item">
                     <img src={slider4} className="w-full rounded-xl" />
-                    <div className="absolute w-6/12 h-full bg-gradient-to-r from-black to-transparent rounded-xl">
+                    <div className="absolute hidden w-6/12 h-full md:block bg-gradient-to-r from-black to-transparent rounded-xl">
                     </div>
                     <div className="absolute bottom-0 flex justify-end gap-3 transform -translate-y-1/2 left-5 right-5">
-                        <a href="#slide3" className="text-white bg-orange-500 border-orange-500 btn btn-circle">❮</a>
-                        <a href="#slide1" className="text-white bg-orange-500 border-orange-500 btn btn-circle">❯</a>
+                        <a href="#slide3" className="text-white bg-orange-500 border-orange-500 btn btn-circle btn-sm md:btn-md">❮</a>
+                        <a href="#slide1" className="text-white bg-orange-500 border-orange-500 btn btn-circle btn-sm md:btn-md">❯</a>
                     </div>
                     <div className="absolute justify-start hidden w-6/12 gap-3 text-white transform -translate-y-1/2 md:block top-64 left-5 right-5">
                         <h1 className="text-5xl font-bold">Affordable</h1>

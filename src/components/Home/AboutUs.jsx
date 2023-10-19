@@ -4,16 +4,16 @@ import image2 from "../../assets/images/about_us/parts.jpg";
 const AboutUs = () => {
     return (
         <div>
-            <div className="flex gap-10">
+            <div className="grid gap-10 md:grid-cols-2">
                 <div className="relative w-full">
                     <div>
-                        <img src={image1} className="w-10/12 h-[400px]" alt="" />
+                        <img src={image1} className="w-10/12 md:h-[400px]" alt="" />
                     </div>
-                    <div className="absolute right-5 top-60">
-                        <img src={image2} className="border-4 rounded-lg border-white w-[250px] h-[210px]" alt="" />
+                    <div className="absolute right-0 top-24 md:right-5 md:top-60">
+                        <img src={image2} className="border-4 rounded-lg border-white md:w-[250px] md:h-[210px] w-[125px] h-[105px]" alt="" />
                     </div>
                 </div>
-                <div className="w-full">
+                <div className="w-full mt-10 md:mt-0">
                     <h5 className="text-xl font-medium text-orange-500">About Us</h5>
                     <br />
                     <h2 className="text-4xl font-semibold">We are qualified</h2>
