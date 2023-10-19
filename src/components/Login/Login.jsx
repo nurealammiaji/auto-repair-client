@@ -2,11 +2,15 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import image from "../../assets/images/login/login.svg";
 import { PiGoogleLogoFill, PiFacebookLogoFill } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
 
     const { emailLogin, googleLogin } = useContext(AuthContext);
+
+    const location = useLocation();
+    const destination = location?.state?.from?.pathname || "/";
+    const navigate = useNavigate();
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -15,13 +19,19 @@ const Login = () => {
         const password = form.password.value;
         console.log(email, password);
         emailLogin(email, password)
-        .then(result => console.log(result))
+        .then(result => {
+            console.log(result)
+            navigate(destination, {replace: true});
+        })
         .catch(error => console.error(error.message))
     }
 
     const handleGoogleLogin = () => {
         googleLogin()
-        .then(result => console.log(result))
+        .then(result => {
+            console.log(result)
+            navigate(destination, {replace: true});
+        })
         .catch(error => console.error(error.message))
     }
 

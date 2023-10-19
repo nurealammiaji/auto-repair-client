@@ -7,14 +7,15 @@ const Private = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
 
     const location = useLocation();
-    console.log(location);
 
     if (loading) {
-        <div className="text-center">
-            <button className="btn">
+        return <div className="text-center">
+            <br /><br />
+            <button className="text-orange-600 btn btn-ghost">
                 <span className="loading loading-spinner"></span>
                 loading
             </button>
+            <br /><br /><br />
         </div>
     }
 

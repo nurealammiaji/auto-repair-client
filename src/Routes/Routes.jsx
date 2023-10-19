@@ -12,6 +12,7 @@ import Search from "../components/Search/Search";
 import Login from "../components/Login/Login";
 import Private from "./Private";
 import Register from "../components/Register/Register";
+import User from '../components/User/User';
 
 const routes = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ const routes = createBrowserRouter([
             {
                 path: "login",
                 element: <Login></Login>
+            },
+            {
+                path: "user",
+                element: <Private><User></User></Private>
             },
         ]
     }
