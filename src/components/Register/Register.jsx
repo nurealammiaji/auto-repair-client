@@ -4,10 +4,18 @@ import image from "../../assets/images/login/login.svg";
 import { PiGoogleLogoFill, PiFacebookLogoFill } from "react-icons/pi";
 import { Link, useNavigate } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
 
     const { emailRegister, googleLogin } = useContext(AuthContext);
+
+    const notify = () => {
+        toast("Registered Successfully !!", {
+            position: toast.POSITION.TOP_CENTER,
+        });
+    };
 
     const destination = "/";
     const navigate = useNavigate();
@@ -35,6 +43,7 @@ const Register = () => {
                         .catch(error => console.error(error.message))
 
                     form.reset();
+                    notify();
                     navigate(destination, { replace: true });
                 })
                 .catch(error => console.error(error.message))
@@ -48,6 +57,7 @@ const Register = () => {
         googleLogin()
             .then(result => {
                 console.log(result)
+                notify();
                 navigate(destination, { replace: true });
             })
             .catch(error => console.error(error.message))
@@ -55,6 +65,7 @@ const Register = () => {
 
     return (
         <div>
+            <ToastContainer />
             <div className="min-h-screen">
                 <div className="gap-5 md:p-10 md:flex">
                     <div className="w-full my-auto md:w-8/12">

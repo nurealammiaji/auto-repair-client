@@ -13,6 +13,7 @@ import Login from "../components/Login/Login";
 import Private from "./Private";
 import Register from "../components/Register/Register";
 import User from '../components/User/User';
+import ServiceDetails from "../components/ServiceDetails/ServiceDetails";
 
 const routes = createBrowserRouter([
     {
@@ -31,6 +32,11 @@ const routes = createBrowserRouter([
             {
                 path: "services",
                 element: <Services></Services>
+            },
+            {
+                path: "services/:id",
+                element: <ServiceDetails></ServiceDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
             },
             {
                 path: "blog",

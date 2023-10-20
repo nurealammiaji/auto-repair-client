@@ -4,6 +4,7 @@ import image2 from "../../assets/images/about_us/parts.jpg";
 const AboutUs = () => {
     return (
         <div>
+            <br />
             <div className="grid gap-10 md:grid-cols-2">
                 <div className="relative w-full">
                     <div>

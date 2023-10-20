@@ -3,10 +3,18 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import image from "../../assets/images/login/login.svg";
 import { PiGoogleLogoFill, PiFacebookLogoFill } from "react-icons/pi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
     const { emailLogin, googleLogin } = useContext(AuthContext);
+
+    const notify = () => {
+        toast("Logged in Successfully !!", {
+            position: toast.POSITION.TOP_CENTER,
+        });
+    };
 
     const location = useLocation();
     const destination = location?.state?.from?.pathname || "/";
@@ -19,25 +27,28 @@ const Login = () => {
         const password = form.password.value;
         console.log(email, password);
         emailLogin(email, password)
-        .then(result => {
-            console.log(result)
-            form.reset();
-            navigate(destination, {replace: true});
-        })
-        .catch(error => console.error(error.message))
+            .then(result => {
+                console.log(result)
+                notify();
+                form.reset();
+                navigate(destination, { replace: true });
+            })
+            .catch(error => console.error(error.message))
     }
 
     const handleGoogleLogin = () => {
         googleLogin()
-        .then(result => {
-            console.log(result)
-            navigate(destination, {replace: true});
-        })
-        .catch(error => console.error(error.message))
+            .then(result => {
+                console.log(result)
+                notify();
+                navigate(destination, { replace: true });
+            })
+            .catch(error => console.error(error.message))
     }
 
     return (
         <div>
+            <ToastContainer />
             <div className="min-h-screen">
                 <div className="gap-5 md:p-10 md:flex">
                     <div className="w-full my-auto md:w-8/12">

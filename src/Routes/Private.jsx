@@ -13,7 +13,7 @@ const Private = ({ children }) => {
             <br /><br />
             <button className="text-orange-600 btn btn-ghost">
                 <span className="loading loading-spinner"></span>
-                loading
+                Loading
             </button>
             <br /><br /><br />
         </div>

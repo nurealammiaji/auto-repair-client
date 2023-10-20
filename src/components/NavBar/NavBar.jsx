@@ -3,10 +3,23 @@ import logo from "../../assets/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { PiHandbagLight, PiUserLight, PiSignOutLight, PiMagnifyingGlassLight, PiSignInLight } from "react-icons/pi";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NavBar = () => {
 
     const { user, logout } = useContext(AuthContext);
+
+    const notify = () => {
+        toast("Logout Successfully !!", {
+            position: toast.POSITION.TOP_CENTER,
+        });
+    };
+
+    const handleLogout = () => {
+        logout();
+        notify();
+    }
 
     const menu = <>
         <li><Link to="/">Home</Link></li>
@@ -18,6 +31,7 @@ const NavBar = () => {
 
     return (
         <div>
+            <ToastContainer />
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -43,7 +57,7 @@ const NavBar = () => {
                         (user) ?
                         <>
                         <Link to="/user"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="User Profile"><PiUserLight className="text-2xl" /></button></Link><Link to="/user"></Link>
-                        <button onClick={logout} className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Logout"><PiSignOutLight className="text-2xl" /></button>
+                        <button onClick={handleLogout} className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Logout"><PiSignOutLight className="text-2xl" /></button>
                         </> :
                         <Link to="/login"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Login"><PiSignInLight className="text-2xl" /></button></Link>
                     }
