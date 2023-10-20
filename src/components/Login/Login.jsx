@@ -21,6 +21,7 @@ const Login = () => {
         emailLogin(email, password)
         .then(result => {
             console.log(result)
+            form.reset();
             navigate(destination, {replace: true});
         })
         .catch(error => console.error(error.message))
@@ -39,7 +40,7 @@ const Login = () => {
         <div>
             <div className="min-h-screen">
                 <div className="gap-5 md:p-10 md:flex">
-                    <div className="w-full md:w-8/12">
+                    <div className="w-full my-auto md:w-8/12">
                         <img src={image} alt="" />
                     </div>
                     <div className="w-full shadow-2xl md:w-8/12 card bg-base-100">
