@@ -16,7 +16,7 @@ const Service = ({ service }) => {
                     <div className="flex items-center justify-between mt-5">
                         <p className="text-orange-600"><span className="font-medium">Price:</span> ${price}</p>
                         <div className="card-actions">
-                            <Link to={`/services/${_id}`}><button className=" btn btn-sm"><PiArrowRightBold className="text-xl font-semibold text-orange-600" /></button></Link>
+                            <Link to={`/services/${_id}`}><button className=" btn btn-sm hover:px-6 tooltip" data-tip="Service Details"><PiArrowRightBold className="text-xl font-semibold text-orange-600" /></button></Link>
                         </div>
                     </div>
                 </div>

@@ -1,15 +1,17 @@
 import { useLoaderData } from "react-router-dom";
-import img from "../../assets/images/services/1.jpg"
 
 const ServiceDetails = () => {
 
     const serviceDetails = useLoaderData();
+    const {img} = serviceDetails;
     console.log(serviceDetails);
 
     return (
         <div>
             <br /><br />
-            <img src={img} alt="" />
+            <div>
+                <img src={img} className="h-[300px] w-full" alt="" />
+            </div>
 
         </div>
     );
