@@ -8,7 +8,8 @@ const User = () => {
 
     return (
         <div className="my-10">
-            <div className="mx-auto shadow-xl card w-96 bg-base-100">
+            <br /><br />
+            <div className="mx-auto shadow-xl card w-full md:w-96 bg-base-100">
                 <figure className="px-10 pt-10">
                     <img src={photoURL} alt="User Image" className="rounded-xl" />
                 </figure>

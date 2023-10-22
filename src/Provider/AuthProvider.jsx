@@ -9,6 +9,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true);
+    const [services, setServices] = useState(null);
     const [user, setUser] = useState(null);
 
     const emailRegister = (email, password) => {
@@ -42,9 +43,16 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    useEffect(() => {
+        fetch('http://localhost:5000/services/')
+        .then(res => res.json())
+        .then(data => setServices(data))
+    }, [])
+
     const authInfo = {
         user,
         loading,
+        services,
         emailRegister,
         emailLogin,
         googleLogin,

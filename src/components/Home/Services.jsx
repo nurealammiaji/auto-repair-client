@@ -6,7 +6,7 @@ const Services = () => {
     const [services, setServices] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('http://localhost:5000/services/')
             .then(res => res.json())
             .then(data => setServices(data))
             .catch(error => console.error(error))
@@ -23,18 +23,24 @@ const Services = () => {
                 <p className="text-lg">the majority have suffered alteration in some form, by injected humour, or randomised<br />words which don't look even slightly believable. </p>
             </div>
             <br />
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <div>
                 {
-                    (services) ? services.map(service => <Service key={service._id} service={service}></Service>) :
-                        <div className="text-center">
-                            <button className="text-orange-600 btn btn-ghost">
-                                <span className="loading loading-spinner"></span>
-                                Loading
-                            </button>
-                        </div>
+                    (!services) &&
+                    <div className="text-center mt-5">
+                        <button className="text-orange-600 btn btn-ghost">
+                            <span className="loading loading-spinner"></span>
+                            Loading
+                        </button>
+                    </div>
                 }
             </div>
-        </div>
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {
+                    (services) &&
+                    services.map(service => <Service key={service._id} service={service}></Service>)
+                }
+            </div>
+        </div >
     );
 };
 
