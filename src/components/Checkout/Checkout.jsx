@@ -1,26 +1,49 @@
+import { useLoaderData } from "react-router-dom";
 import banner from "../../assets/images/checkout/checkout.png";
+import Swal from 'sweetalert2';
 
 const Checkout = () => {
+
+    const service = useLoaderData();
+
+    const { service_id, title } = service;
 
     const handleCheckout = (event) => {
         event.preventDefault();
         const form = event.target;
         const serviceID = form.serviceID.value;
         const serviceTitle = form.serviceTitle.value;
-        const ServiceDate = form.date.value;
+        const serviceDate = form.date.value;
         const customerName = form.name.value;
         const customerPhone = form.phone.value;
         const customerEmail = form.email.value;
         const customerMessage = form.message.value;
-        const order = { serviceID, serviceTitle, ServiceDate, customerName, customerPhone, customerEmail, customerMessage };
-        console.log(order);
+        const booking = { serviceID, serviceTitle, serviceDate, customerName, customerPhone, customerEmail, customerMessage };
+        console.log(booking);
         fetch('http://localhost:5000/checkout', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(order)
+            body: JSON.stringify(booking)
         })
+            .then(result => {
+                console.log(result);
+                if (result) {
+                    Swal.fire(
+                        'Thank You!',
+                        'You booked this service successfully',
+                        'success'
+                    )
+                    form.reset();
+                }
+                else {
+                    return;
+                }
+            })
+            .catch(error => {
+                console.error(error)
+            })
     }
 
     return (
@@ -32,32 +55,32 @@ const Checkout = () => {
                 </div>
             </div>
             <br /><br />
-            <div className="w-full shadow-2xl md:p-20 card rounded-md bg-base-100">
-                <form onSubmit={handleCheckout} className="card-body bg-gray-100 rounded-lg">
+            <div className="w-full rounded-md shadow-2xl md:p-20 card bg-base-100">
+                <form onSubmit={handleCheckout} className="bg-gray-100 rounded-lg card-body">
                     <br />
-                    <div className="flex-row md:flex justify-between gap-5">
-                        <div className="form-control w-full">
+                    <div className="flex-row justify-between gap-5 md:flex">
+                        <div className="w-full form-control">
                             <label className="label">
                                 <span className="label-text">Service ID</span>
                             </label>
-                            <input type="text" name="serviceID" placeholder="Service ID" className="input input-bordered" disabled />
+                            <input type="text" name="serviceID" defaultValue={service_id} className="input input-bordered" disabled />
                         </div>
-                        <div className="form-control w-full mt-4 md:mt-0">
+                        <div className="w-full mt-4 form-control md:mt-0">
                             <label className="label">
                                 <span className="label-text">Service Title</span>
                             </label>
-                            <input type="text" name="serviceTitle" placeholder="Service Title" className="input input-bordered" disabled />
+                            <input type="text" name="serviceTitle" defaultValue={title} className="input input-bordered" disabled />
                         </div>
                     </div>
                     <br />
-                    <div className="flex-row md:flex justify-between gap-5">
-                        <div className="form-control w-full">
+                    <div className="flex-row justify-between gap-5 md:flex">
+                        <div className="w-full form-control">
                             <label className="label">
                                 <span className="label-text">Service Date</span>
                             </label>
                             <input type="date" name="date" placeholder="Select Date" className="input input-bordered" required />
                         </div>
-                        <div className="form-control w-full mt-4 md:mt-0">
+                        <div className="w-full mt-4 form-control md:mt-0">
                             <label className="label">
                                 <span className="label-text">Your Name</span>
                             </label>
@@ -65,14 +88,14 @@ const Checkout = () => {
                         </div>
                     </div>
                     <br />
-                    <div className="flex-row md:flex justify-between gap-5">
-                        <div className="form-control w-full">
+                    <div className="flex-row justify-between gap-5 md:flex">
+                        <div className="w-full form-control">
                             <label className="label">
                                 <span className="label-text">Your Phone</span>
                             </label>
                             <input type="text" name="phone" placeholder="Your Phone" className="input input-bordered" required />
                         </div>
-                        <div className="form-control w-full mt-4 md:mt-0">
+                        <div className="w-full mt-4 form-control md:mt-0">
                             <label className="label">
                                 <span className="label-text">Your Email</span>
                             </label>
@@ -80,15 +103,15 @@ const Checkout = () => {
                         </div>
                     </div>
                     <br />
-                    <div className="form-control w-full">
+                    <div className="w-full form-control">
                         <label className="label">
                             <span className="label-text">Your Message</span>
                         </label>
-                        <textarea name="message" rows="4" placeholder="Your Message" className="border rounded-lg p-4 resize-y"></textarea>
+                        <textarea name="message" rows="4" placeholder="Your Message" className="p-4 border rounded-lg resize-y outline-0 focus:outline-transparent"></textarea>
                     </div>
                     <br />
                     <div className="mt-6 form-control">
-                        <button type="submit" className="btn bg-orange-600 text-white hover:text-black">Order Confirm</button>
+                        <button type="submit" className="text-white bg-orange-600 btn hover:text-black">Order Confirm</button>
                     </div>
                 </form>
             </div>
