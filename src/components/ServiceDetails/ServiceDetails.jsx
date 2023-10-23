@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, NavLink, useLoaderData } from "react-router-dom";
 import banner from "../../assets/images/checkout/checkout.png";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -43,7 +43,7 @@ const ServiceDetails = () => {
                         <br />
                         {
                             (services) ?
-                                services.map(service => <Link to={`/services/${service._id}`} key={service._id}><button className="btn bg-white text-orange-600 hover:bg-orange-600 hover:text-white w-full my-1"><span className="text-black">{service.title}</span> <PiArrowRightBold className="ml-auto font-semibold text-lg" /></button></Link>) :
+                                services.map(service => <NavLink to={`/services/${service._id}`} key={service._id} className={({isActive})=> isActive ? "btn w-full bg-orange-600 text-white my-1" : "btn w-full bg-white text-orange-600 hover:bg-orange-600 hover:text-white my-1" }><span className="">{service.title}</span> <PiArrowRightBold className="ml-auto font-semibold text-lg" /></NavLink>) :
                                 <div className="text-center">
                                     <button className="text-orange-600 btn btn-ghost">
                                         <span className="loading loading-spinner"></span>
@@ -54,7 +54,7 @@ const ServiceDetails = () => {
                     </div>
                     <br /><br />
                     <div>
-                        <h3 className="text-xl font-semibold">Price: ${price}</h3>
+                        <h3 className="text-2xl font-semibold">Price: ${price}</h3>
                         <br />
                         <Link to={`/checkout/${_id}`}><button className="btn w-full bg-orange-600 text-white hover:text-black">Proceed Checkout</button></Link>
                     </div>

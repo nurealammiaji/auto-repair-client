@@ -1,24 +1,33 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import banner from "../../assets/images/checkout/checkout.png";
 import Swal from 'sweetalert2';
+import { useContext } from "react";
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Checkout = () => {
 
+    const { user } = useContext(AuthContext);
     const service = useLoaderData();
 
-    const { service_id, title } = service;
+    const { displayName, email } = user;
+    const { service_id, title, price, img } = service;
+
+    const navigate = useNavigate();
 
     const handleCheckout = (event) => {
         event.preventDefault();
         const form = event.target;
-        const serviceID = form.serviceID.value;
-        const serviceTitle = form.serviceTitle.value;
+        const serviceID = service_id;
+        const serviceName = form.serviceName.value;
+        const servicePrice = form.servicePrice.value;
+        const serviceImage = img;
         const serviceDate = form.date.value;
+        const serviceStatus = "pending";
         const customerName = form.name.value;
         const customerPhone = form.phone.value;
         const customerEmail = form.email.value;
         const customerMessage = form.message.value;
-        const booking = { serviceID, serviceTitle, serviceDate, customerName, customerPhone, customerEmail, customerMessage };
+        const booking = { serviceID, serviceName, serviceImage, servicePrice, serviceStatus, serviceDate, customerName, customerPhone, customerEmail, customerMessage };
         console.log(booking);
         fetch('http://localhost:5000/checkout', {
             method: 'POST',
@@ -36,6 +45,7 @@ const Checkout = () => {
                         'success'
                     )
                     form.reset();
+                    navigate("/", { replace: true });
                 }
                 else {
                     return;
@@ -61,15 +71,15 @@ const Checkout = () => {
                     <div className="flex-row justify-between gap-5 md:flex">
                         <div className="w-full form-control">
                             <label className="label">
-                                <span className="label-text">Service ID</span>
+                                <span className="label-text">Service Name</span>
                             </label>
-                            <input type="text" name="serviceID" defaultValue={service_id} className="input input-bordered" disabled />
+                            <input type="text" name="serviceName" defaultValue={title} className="input input-bordered" disabled />
                         </div>
                         <div className="w-full mt-4 form-control md:mt-0">
                             <label className="label">
-                                <span className="label-text">Service Title</span>
+                                <span className="label-text">Service Price</span>
                             </label>
-                            <input type="text" name="serviceTitle" defaultValue={title} className="input input-bordered" disabled />
+                            <input type="text" name="servicePrice" defaultValue={price} className="input input-bordered" disabled />
                         </div>
                     </div>
                     <br />
@@ -84,7 +94,7 @@ const Checkout = () => {
                             <label className="label">
                                 <span className="label-text">Your Name</span>
                             </label>
-                            <input type="text" name="name" placeholder="Your Name" className="input input-bordered" required />
+                            <input type="text" name="name" defaultValue={displayName} placeholder="Your Name" className="input input-bordered" required />
                         </div>
                     </div>
                     <br />
@@ -99,7 +109,7 @@ const Checkout = () => {
                             <label className="label">
                                 <span className="label-text">Your Email</span>
                             </label>
-                            <input type="email" name="email" placeholder="Your Email" className="input input-bordered" required />
+                            <input type="email" name="email" defaultValue={email} placeholder="Your Email" className="input input-bordered" required />
                         </div>
                     </div>
                     <br />

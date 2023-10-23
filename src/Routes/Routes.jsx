@@ -15,6 +15,7 @@ import Register from "../components/Register/Register";
 import User from '../components/User/User';
 import ServiceDetails from "../components/ServiceDetails/ServiceDetails";
 import Checkout from '../components/Checkout/Checkout';
+import CartDetails from '../components/CartDetails/CartDetails';
 
 const routes = createBrowserRouter([
     {
@@ -55,6 +56,11 @@ const routes = createBrowserRouter([
             {
                 path: "cart",
                 element: <Private><Cart></Cart></Private>
+            },
+            {
+                path: "cart/:id",
+                element: <Private><CartDetails></CartDetails></Private>,
+                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
             {
                 path: "search",
