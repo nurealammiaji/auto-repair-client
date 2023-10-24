@@ -24,7 +24,10 @@ const NavBar = () => {
     const menu = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
-        <li><Link to="/services">Services</Link></li>
+        {
+            (user) &&
+            <li><Link to="/services">My Services</Link></li>
+        }
         <li><Link to="/blog">Blog</Link></li>
         <li><Link to="/contact">Contact</Link></li>
     </>
@@ -55,11 +58,11 @@ const NavBar = () => {
                 <div className="navbar-end">
                     {
                         (user) ?
-                        <>
-                        <Link to="/user"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="User Profile"><PiUserLight className="text-2xl" /></button></Link><Link to="/user"></Link>
-                        <button onClick={handleLogout} className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Logout"><PiSignOutLight className="text-2xl" /></button>
-                        </> :
-                        <Link to="/login"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Login"><PiSignInLight className="text-2xl" /></button></Link>
+                            <>
+                                <Link to="/user"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="User Profile"><PiUserLight className="text-2xl" /></button></Link><Link to="/user"></Link>
+                                <button onClick={handleLogout} className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Logout"><PiSignOutLight className="text-2xl" /></button>
+                            </> :
+                            <Link to="/login"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Login"><PiSignInLight className="text-2xl" /></button></Link>
                     }
                     <Link to="/cart"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Cart"><PiHandbagLight className="text-2xl" /></button></Link>
                     <Link to="/search"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Search"><PiMagnifyingGlassLight className="text-2xl" /></button></Link>

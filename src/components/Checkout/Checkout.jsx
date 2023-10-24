@@ -9,7 +9,7 @@ const Checkout = () => {
     const { user } = useContext(AuthContext);
     const service = useLoaderData();
 
-    const { displayName, email } = user;
+    const { displayName, email, uid } = user;
     const { service_id, title, price, img } = service;
 
     const navigate = useNavigate();
@@ -23,12 +23,14 @@ const Checkout = () => {
         const serviceImage = img;
         const serviceDate = form.date.value;
         const serviceStatus = "pending";
+        const customerID = uid;
         const customerName = form.name.value;
         const customerPhone = form.phone.value;
         const customerEmail = form.email.value;
         const customerMessage = form.message.value;
-        const booking = { serviceID, serviceName, serviceImage, servicePrice, serviceStatus, serviceDate, customerName, customerPhone, customerEmail, customerMessage };
+        const booking = { serviceID, serviceName, serviceImage, servicePrice, serviceStatus, serviceDate, customerID, customerName, customerPhone, customerEmail, customerMessage };
         console.log(booking);
+
         fetch('http://localhost:5000/checkout', {
             method: 'POST',
             headers: {
@@ -40,12 +42,12 @@ const Checkout = () => {
                 console.log(result);
                 if (result) {
                     Swal.fire(
-                        'Thank You!',
-                        'You booked this service successfully',
+                        'Booked !!',
+                        'You booked the service successfully',
                         'success'
                     )
                     form.reset();
-                    navigate("/", { replace: true });
+                    navigate("/cart", { replace: true });
                 }
                 else {
                     return;
