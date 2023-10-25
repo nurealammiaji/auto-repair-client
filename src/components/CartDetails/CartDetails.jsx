@@ -5,7 +5,6 @@ const CartDetails = ({ service }) => {
     const { _id, serviceName, serviceImage, servicePrice, serviceStatus, serviceDate, customerName, customerEmail, customerPhone } = service;
 
     const handleServiceDelete = (_id) => {
-        console.log("Delete", _id)
         fetch(`https://auto-repair-server.vercel.app/bookings/${_id}`, {
             method: "DELETE"
         })
@@ -23,7 +22,6 @@ const CartDetails = ({ service }) => {
     }
 
     const handleServiceUpdate = (_id) => {
-        console.log("Update", _id)
         const booking = {
             serviceStatus: "Approved"
         };
@@ -50,11 +48,7 @@ const CartDetails = ({ service }) => {
     return (
         <tr>
             <th>
-                {
-                    (serviceStatus === "Pending") ?
-                        <button onClick={() => handleServiceDelete(_id)} className="btn btn-error btn-circle btn-sm tooltip tooltip-right" data-tip="Click to Delete">X</button> :
-                        <button disabled className="btn btn-circle btn-sm">X</button>
-                }
+                <button onClick={() => handleServiceDelete(_id)} className="btn btn-error btn-circle btn-sm tooltip tooltip-right" data-tip="Click to Delete">X</button>
             </th>
             <td>
                 <div className="flex items-center space-x-3">
