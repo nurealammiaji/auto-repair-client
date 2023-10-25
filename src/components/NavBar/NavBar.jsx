@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const NavBar = () => {
 
-    const { user, logout } = useContext(AuthContext);
+    const { user, bookings, logout } = useContext(AuthContext);
 
     const notify = () => {
         toast("Logout Successfully !!", {
@@ -61,7 +61,7 @@ const NavBar = () => {
                             </> :
                             <Link to="/login"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Login"><PiSignInLight className="text-2xl" /></button></Link>
                     }
-                    <Link to="/cart"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Cart"><PiHandbagLight className="text-2xl" /></button></Link>
+                    <Link to="/cart"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Cart"><PiHandbagLight className="text-2xl relative" /><span className="absolute bottom-0 badge badge-success badge-xs">{bookings.length}</span></button></Link>
                     <Link to="/search"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Search"><PiMagnifyingGlassLight className="text-2xl" /></button></Link>
                     <Link to="/appointment"><button className="hidden ml-2 text-orange-500 border-orange-500 md:block btn btn-outline hover:text-white">Appointment</button></Link>
                 </div>
