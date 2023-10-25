@@ -38,12 +38,12 @@ const routes = createBrowserRouter([
             {
                 path: "services/:id",
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({params}) => fetch(`https://auto-repair-server.vercel.app/services/${params.id}`)
             },
             {
                 path: "checkout/:id",
                 element: <Private><Checkout></Checkout></Private>,
-                loader: ({params}) => fetch(`http://localhost:5000/checkout/${params.id}`)
+                loader: ({params}) => fetch(`https://auto-repair-server.vercel.app/checkout/${params.id}`)
             },
             {
                 path: "blog",
@@ -60,7 +60,7 @@ const routes = createBrowserRouter([
             {
                 path: "cart/:id",
                 element: <Private><CartDetails></CartDetails></Private>,
-                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({params}) => fetch(`https://auto-repair-server.vercel.app/bookings/${params.id}`)
             },
             {
                 path: "search",

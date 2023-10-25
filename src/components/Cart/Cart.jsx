@@ -1,20 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from '../../Provider/AuthProvider';
 import CartDetails from "../CartDetails/CartDetails";
 
 const Cart = () => {
 
-    const { user } = useContext(AuthContext);
-
-    const [services, setServices] = useState(null);
-
-    const url = `http://localhost:5000/bookings?uid=${user?.uid}`;
-
-    useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setServices(data))
-    })
+    const { bookings } = useContext(AuthContext);
 
     return (
         <div>
@@ -33,8 +23,8 @@ const Cart = () => {
                         </thead>
                         <tbody>
                             {
-                                (services) &&
-                                    services.map(service => <CartDetails key={service._id} service={service}></CartDetails>)
+                                (bookings) &&
+                                    bookings.map(service => <CartDetails key={service._id} service={service}></CartDetails>)
                             }
                         </tbody>
                     </table>

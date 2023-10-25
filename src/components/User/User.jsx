@@ -3,8 +3,12 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const User = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     const {email, displayName, photoURL} = user;
+
+    const handleLogout = () => {
+        logout()
+    }
 
     return (
         <div className="my-10">
@@ -18,7 +22,7 @@ const User = () => {
                     <p>{email}</p>
                     <br />
                     <div className="card-actions">
-                        <button className="btn btn-primary">Edit</button>
+                        <button onClick={handleLogout} className="btn btn-primary">Logout</button>
                     </div>
                 </div>
             </div>

@@ -24,10 +24,7 @@ const NavBar = () => {
     const menu = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
-        {
-            (user) &&
-            <li><Link to="/services">My Services</Link></li>
-        }
+        <li><Link to="/services">Services</Link></li>
         <li><Link to="/blog">Blog</Link></li>
         <li><Link to="/contact">Contact</Link></li>
     </>

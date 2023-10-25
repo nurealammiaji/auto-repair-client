@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true);
     const [services, setServices] = useState(null);
+    const [bookings, setBookings] = useState(null);
     const [user, setUser] = useState(null);
 
     const emailRegister = (email, password) => {
@@ -31,6 +32,7 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
+    // User Loading
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setLoading(true);
@@ -43,16 +45,27 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    // Services Loading
     useEffect(() => {
-        fetch('http://localhost:5000/services/')
+        fetch('https://auto-repair-server.vercel.app/services/')
         .then(res => res.json())
         .then(data => setServices(data))
     }, [])
+
+    // Bookings Loading
+    const url = `https://auto-repair-server.vercel.app/bookings?uid=${user?.uid}`;
+
+    useEffect(() => {
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setBookings(data))
+    })
 
     const authInfo = {
         user,
         loading,
         services,
+        bookings,
         emailRegister,
         emailLogin,
         googleLogin,
