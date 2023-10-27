@@ -17,7 +17,12 @@ const NavBar = () => {
     };
 
     const handleLogout = () => {
-        logout();
+        logout()
+        .then(result => {
+            console.log(result);
+            localStorage.removeItem('autorepair-user-token');
+        })
+        .then(error => console.log(error))
         notify();
     }
 

@@ -36,7 +36,6 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setLoading(true);
-            console.log(currentUser);
             setUser(currentUser);
             setLoading(false);
         })
@@ -48,18 +47,40 @@ const AuthProvider = ({ children }) => {
     // Services Loading
     useEffect(() => {
         fetch('https://auto-repair-server.vercel.app/services/')
-        .then(res => res.json())
-        .then(data => setServices(data))
+            .then(res => res.json())
+            .then(data => setServices(data))
     }, [])
 
     // Bookings Loading
     const url = `https://auto-repair-server.vercel.app/bookings?uid=${user?.uid}`;
 
     useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setBookings(data))
+        if (user) {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => setBookings(data))
+        }
     })
+
+    // JWT Adding
+    useEffect(() => {
+        if (user !== null) {
+            const loggedUser = {uid: user.uid};
+            console.log(loggedUser);
+            fetch('http://localhost:5000/jwt', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(loggedUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log('JWT Token:', data.token);
+                localStorage.setItem('autorepair-user-token', data.token);
+            })
+        }
+    }, [user])
 
     const authInfo = {
         user,
