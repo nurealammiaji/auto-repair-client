@@ -46,27 +46,36 @@ const AuthProvider = ({ children }) => {
 
     // Services Loading
     useEffect(() => {
-        fetch('https://auto-repair-server.vercel.app/services/')
+        fetch('http://localhost:5000/services/')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
 
     // Bookings Loading
-    const url = `https://auto-repair-server.vercel.app/bookings?uid=${user?.uid}`;
-
     useEffect(() => {
-        if (user) {
-            fetch(url)
+        if (user !== null) {
+            fetch(`http://localhost:5000/bookings?uid=${user?.uid}`, {
+                method: 'GET',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('autoRepair-user-token')}`
+                }
+            })
                 .then(res => res.json())
-                .then(data => setBookings(data))
+                .then(data => {
+                    setBookings(data);
+                    setLoading(false);
+                })
         }
-    })
+        else {
+            setLoading(true);
+        }
+    }, [user])
 
     // JWT Adding
     useEffect(() => {
-        if (user !== null) {
-            const loggedUser = {uid: user.uid};
-            console.log(loggedUser);
+        setLoading(true);
+        if (user) {
+            const loggedUser = { uid: user.uid };
             fetch('http://localhost:5000/jwt', {
                 method: 'POST',
                 headers: {
@@ -74,11 +83,11 @@ const AuthProvider = ({ children }) => {
                 },
                 body: JSON.stringify(loggedUser)
             })
-            .then(res => res.json())
-            .then(data => {
-                console.log('JWT Token:', data.token);
-                localStorage.setItem('autorepair-user-token', data.token);
-            })
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem('autoRepair-user-token', data.token);
+                    setLoading(false);
+                })
         }
     }, [user])
 

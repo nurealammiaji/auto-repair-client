@@ -18,11 +18,12 @@ const NavBar = () => {
 
     const handleLogout = () => {
         logout()
-        .then(result => {
-            console.log(result);
-            localStorage.removeItem('autorepair-user-token');
-        })
-        .then(error => console.log(error))
+            .then(result => {
+                if (result) {
+                    localStorage.removeItem('autoRepair-user-token');
+                }
+            })
+            .then(error => console.log(error))
         notify();
     }
 
@@ -66,7 +67,7 @@ const NavBar = () => {
                             </> :
                             <Link to="/login"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Login"><PiSignInLight className="text-2xl" /></button></Link>
                     }
-                    <Link to="/cart"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Cart"><PiHandbagLight className="text-2xl relative" />{(bookings?.length) ? <span className="absolute bottom-0 badge badge-success badge-xs">{bookings?.length}</span> : ''}</button></Link>
+                    <Link to="/cart"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Cart"><PiHandbagLight className="relative text-2xl" />{(bookings?.length) ? <span className="absolute bottom-0 badge badge-success badge-xs">{bookings?.length}</span> : ''}</button></Link>
                     <Link to="/search"><button className="p-0 m-1 btn btn-sm btn-ghost tooltip" data-tip="Search"><PiMagnifyingGlassLight className="text-2xl" /></button></Link>
                     <Link to="/appointment"><button className="hidden ml-2 text-orange-500 border-orange-500 md:block btn btn-outline hover:text-white">Appointment</button></Link>
                 </div>
