@@ -5,7 +5,7 @@ const CartDetails = ({ service }) => {
     const { _id, serviceName, serviceImage, servicePrice, serviceStatus, serviceDate, customerName, customerEmail, customerPhone } = service;
 
     const handleServiceDelete = (_id) => {
-        fetch(`http://localhost:5000/bookings/${_id}`, {
+        fetch(`https://auto-repair-server.vercel.app/bookings/${_id}`, {
             method: "DELETE",
         })
             .then(result => {
@@ -25,7 +25,7 @@ const CartDetails = ({ service }) => {
         const booking = {
             serviceStatus: "Approved"
         };
-        fetch(`http://localhost:5000/bookings/${_id}`, {
+        fetch(`https://auto-repair-server.vercel.app/bookings/${_id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json'

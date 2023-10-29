@@ -29,7 +29,7 @@ const Checkout = () => {
         const customerEmail = form.email.value;
         const customerMessage = form.message.value;
         const booking = { serviceID, serviceName, serviceImage, servicePrice, serviceStatus, serviceDate, customerID, customerName, customerPhone, customerEmail, customerMessage };
-        fetch('http://localhost:5000/checkout', {
+        fetch('https://auto-repair-server.vercel.app/checkout', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

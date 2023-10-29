@@ -32,46 +32,15 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    // User Loading
+    // User Loading and JWT Adding
     useEffect(() => {
+        // User Loading
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setLoading(true);
             setUser(currentUser);
-            setLoading(false);
-        })
-        return () => {
-            return unsubscribe();
-        }
-    })
-
-    // Services Loading
-    useEffect(() => {
-        fetch('http://localhost:5000/services/')
-            .then(res => res.json())
-            .then(data => setServices(data))
-    })
-
-    // Bookings Loading
-    useEffect(() => {
-        if (user !== null) {
-            fetch(`http://localhost:5000/bookings?uid=${user?.uid}`, {
-                method: 'GET',
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('autoRepair-user-token')}`
-                }
-            })
-                .then(res => res.json())
-                .then(data => {
-                    setBookings(data);
-                })
-        }
-    })
-
-    // JWT Adding
-    useEffect(() => {
-        if (user !== null) {
-            const loggedUser = { uid: user.uid };
-            fetch('http://localhost:5000/jwt', {
+            // JWT Adding
+            const loggedUser = {uid: currentUser?.uid};
+            fetch('https://auto-repair-server.vercel.app/jwt', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -81,6 +50,33 @@ const AuthProvider = ({ children }) => {
                 .then(res => res.json())
                 .then(data => {
                     localStorage.setItem('autoRepair-user-token', data.token);
+                })
+            setLoading(false);
+        })
+        return () => {
+            return unsubscribe();
+        }
+    })
+
+    // Services Loading
+    useEffect(() => {
+        fetch('https://auto-repair-server.vercel.app/services/')
+            .then(res => res.json())
+            .then(data => setServices(data))
+    })
+
+    // Bookings Loading
+    useEffect(() => {
+        if (user) {
+            fetch(`https://auto-repair-server.vercel.app/bookings?uid=${user?.uid}`, {
+                method: 'GET',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('autoRepair-user-token')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setBookings(data);
                 })
         }
     })
