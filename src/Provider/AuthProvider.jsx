@@ -42,14 +42,14 @@ const AuthProvider = ({ children }) => {
         return () => {
             return unsubscribe();
         }
-    }, [])
+    })
 
     // Services Loading
     useEffect(() => {
         fetch('http://localhost:5000/services/')
             .then(res => res.json())
             .then(data => setServices(data))
-    }, [])
+    })
 
     // Bookings Loading
     useEffect(() => {
@@ -63,18 +63,13 @@ const AuthProvider = ({ children }) => {
                 .then(res => res.json())
                 .then(data => {
                     setBookings(data);
-                    setLoading(false);
                 })
         }
-        else {
-            setLoading(true);
-        }
-    }, [user])
+    })
 
     // JWT Adding
     useEffect(() => {
-        setLoading(true);
-        if (user) {
+        if (user !== null) {
             const loggedUser = { uid: user.uid };
             fetch('http://localhost:5000/jwt', {
                 method: 'POST',
@@ -86,10 +81,9 @@ const AuthProvider = ({ children }) => {
                 .then(res => res.json())
                 .then(data => {
                     localStorage.setItem('autoRepair-user-token', data.token);
-                    setLoading(false);
                 })
         }
-    }, [user])
+    })
 
     const authInfo = {
         user,

@@ -19,9 +19,8 @@ const NavBar = () => {
     const handleLogout = () => {
         logout()
             .then(result => {
-                if (result) {
-                    localStorage.removeItem('autoRepair-user-token');
-                }
+                console.log(result);
+                localStorage.removeItem('autoRepair-user-token');
             })
             .then(error => console.log(error))
         notify();
